@@ -1,5 +1,7 @@
+import controllers.GameController;
 import controllers.WordsController;
-// import dao.GameDAO;
+import controllers.CardsController;
+import dao.GameDAO;
 // import dao.WordsDAO;
 import webserver.WebServer;
 import webserver.WebServerContext;
@@ -23,6 +25,29 @@ public class App {
 
             webserver.getRouter().get("/words", (WebServerContext context) -> {
                 WordsController.findAll(context);
+            });
+
+            // create a route to the game with the code as a parameter
+            webserver.getRouter().get("/game/:gameCode", (WebServerContext context) -> {
+                if (GameController.gameExists(context)) {
+                    GameController.findGameByCode(context);
+                }   
+                else {
+                    GameController.createGame(context);
+                    CardsController.createCards(context);
+                }
+
+            });
+
+            // create a route to return the cards of the game with the code as a parameter
+            webserver.getRouter().get("/game/:gameCode/cards", (WebServerContext context) -> {
+                if (GameController.gameExists(context)) {
+                    CardsController.drawAllCards(context);
+                }   
+                else {
+                    GameController.createGame(context);
+                    CardsController.createCards(context);
+                }
             });
 
         } catch (Exception e) {

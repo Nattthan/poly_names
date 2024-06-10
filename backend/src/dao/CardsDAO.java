@@ -68,13 +68,14 @@ public class CardsDAO {
     }
 
     //draw 8 blue cards
-    public ArrayList<Word> drawBlueCards(){
+    public ArrayList<Word> drawBlueCards(int game_ID){
         ArrayList<Word> blueCards = new ArrayList<>();
         try {
             PolyNameDatabase db = new PolyNameDatabase("localhost", 3306, "poly_names", "root", "");
-            String query = "SELECT * from card WHERE Color_ID = ? ORDER BY RAND() LIMIT 8";
+            String query = "SELECT * from card WHERE Color_ID = ? AND Game_ID = ? ORDER BY RAND() LIMIT 8";
             PreparedStatement statement = db.prepareStatement(query);
             statement.setInt(1, 1);
+            statement.setInt(2, game_ID);
             System.out.println("Executing query: " + query);
             ResultSet resultSet = statement.executeQuery();
 
@@ -93,13 +94,14 @@ public class CardsDAO {
     }
 
     //draw 15 grey cards
-    public ArrayList<Word> drawGreyCards(){
+    public ArrayList<Word> drawGreyCards(int game_ID){
         ArrayList<Word> greyCards = new ArrayList<>();
         try {
             PolyNameDatabase db = new PolyNameDatabase("localhost", 3306, "poly_names", "root", "");
-            String query = "SELECT * from card WHERE Color_ID = ? ORDER BY RAND() LIMIT 15";
+            String query = "SELECT * from card WHERE Color_ID = ? AND Game_ID = ? ORDER BY RAND() LIMIT 15";
             PreparedStatement statement = db.prepareStatement(query);
             statement.setInt(1, 2);
+            statement.setInt(2, game_ID);
             System.out.println("Executing query: " + query);
             ResultSet resultSet = statement.executeQuery();
 
@@ -118,13 +120,14 @@ public class CardsDAO {
     }
 
     //draw 2 black cards
-    public ArrayList<Word> drawBlackCards(){
+    public ArrayList<Word> drawBlackCards(int game_ID){
         ArrayList<Word> blackCards = new ArrayList<>();
         try {
             PolyNameDatabase db = new PolyNameDatabase("localhost", 3306, "poly_names", "root", "");
-            String query = "SELECT * from card WHERE Color_ID = ? ORDER BY RAND() LIMIT 2";
+            String query = "SELECT * from card WHERE Color_ID = ? AND Game_ID = ? ORDER BY RAND() LIMIT 2";
             PreparedStatement statement = db.prepareStatement(query);
             statement.setInt(1, 3);
+            statement.setInt(2, game_ID);
             System.out.println("Executing query: " + query);
             ResultSet resultSet = statement.executeQuery();
 
@@ -140,5 +143,31 @@ public class CardsDAO {
             System.out.println("Failed to draw black cards.");
         }
         return blackCards;
+    }
+
+    // draw all cards depending on the game ID
+    public ArrayList<Word> drawAllCards(int game_ID){
+        ArrayList<Word> allCards = new ArrayList<>();
+        try {
+            PolyNameDatabase db = new PolyNameDatabase("localhost", 3306, "poly_names", "root", "");
+            String query = "SELECT * FROM card INNER JOIN word ON card.Word_ID = word.Word_ID WHERE Game_ID = ? ORDER BY RAND() LIMIT 25";
+            PreparedStatement statement = db.prepareStatement(query);
+            statement.setInt(1, game_ID);
+            System.out.println("Executing query: " + query);
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()){
+                int id = resultSet.getInt("Word_ID");
+                String content = resultSet.getString("content");
+
+                Word wordObj = new Word(id, content);
+                allCards.add(wordObj);
+            }
+
+        } catch (Exception e) {
+            System.out.println("Failed to draw all cards.");
+            e.printStackTrace();
+        }
+        return allCards;
     }
 }

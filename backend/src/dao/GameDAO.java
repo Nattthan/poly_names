@@ -129,6 +129,26 @@ public class GameDAO {
         }
     }
 
+    // check if the game exists
+    public boolean gameExists(String code){
+        try {
+            PolyNameDatabase db = new PolyNameDatabase("localhost", 3306, "poly_names", "root", "");
+            String query = "SELECT * FROM game WHERE code = ?";
+            PreparedStatement statement = db.prepareStatement(query);
+            statement.setString(1, code);
+            System.out.println("Executing query: " + query);
+            ResultSet resultSet = statement.executeQuery();
 
+            if(resultSet.next()){
+                return true;
+            } else {
+                return false;
+            }
+
+        } catch (Exception e) {
+            System.out.println("Failed to check if game exists.");
+            return false;
+        }
+    }
     
 }
