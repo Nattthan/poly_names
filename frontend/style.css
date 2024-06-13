@@ -1,0 +1,17 @@
+body {
+  background-image: url('Images/backgr.jpg');
+}
+
+div{
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+}
+
+button{
+    background-color: brown;
+}
+
+button:active{
+    background-color: beige;
+}
