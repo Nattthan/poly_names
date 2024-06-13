@@ -88,6 +88,26 @@ public class CardsController {
         return null;
     }
 
+    public static ArrayList<Word> drawAllColorCards(WebServerContext webServerContext){
+        try {
+            String gameCode = webServerContext.getRequest().getParam("gameCode");
+            if(gameCode == null) {
+                webServerContext.getResponse().notFound("Missing game code.");
+                return null;
+            }
+
+            GameDAO gameDAO = new GameDAO();
+            int game_ID = gameDAO.findGameByCode(gameCode);
+
+            CardsDAO cardsDAO = new CardsDAO();
+            webServerContext.getResponse().json(cardsDAO.drawAllColorCards(game_ID));
+            return null;
+        } catch (Exception e) {
+            webServerContext.getResponse().serverError("Failed to find all cards.");
+        }
+        return null;
+    }
+
     public static void createCards(WebServerContext webServerContext){
         try {
             String gameCode = webServerContext.getRequest().getParam("gameCode");

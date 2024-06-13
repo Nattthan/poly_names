@@ -50,6 +50,17 @@ public class App {
                 }
             });
 
+            // create a route to return the cards of the game with the code as a parameter
+            webserver.getRouter().get("/game/:gameCode/colorCards", (WebServerContext context) -> {
+                if (GameController.gameExists(context)) {
+                    CardsController.drawAllColorCards(context);
+                }   
+                else {
+                    GameController.createGame(context);
+                    CardsController.createCards(context);
+                }
+            });
+
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
         }
