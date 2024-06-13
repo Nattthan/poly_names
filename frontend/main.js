@@ -1,7 +1,8 @@
 import { WordsService } from "./services/words-service.js";
 import { CardsService } from "./services/cards-service.js";
 import { ColorCardsService } from "./services/colorCards-service.js";
-import { cardsView } from "./views/cards-view.js";
+import { CardsView } from "./views/cards-view.js";
+import { GameService } from "./services/game-service.js";
 
 async function run() {
   console.log("all words");
@@ -13,6 +14,7 @@ async function run() {
 
   console.log("all cards");
   const cardsService = new CardsService();
+  const cardsView = new CardsView();
   // Correct usage if keeping findAll as a static method
   await cardsView.displayCards();
 
