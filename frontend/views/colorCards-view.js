@@ -15,14 +15,11 @@ export class ColorCardsView {
     displayColorCard(card) {
         const cardElement = document.createElement("div");
         cardElement.classList.add("card");
-        cardElement.innerHTML = ('<button>' + card.contents + '</button>');
+        cardElement.innerHTML = ('<button class = "coloredcards">' + card.contents + '</button>');
         this.parent.appendChild(cardElement);  
-        const button = cardElement.querySelector("button");
+        const button = cardElement.querySelector(".coloredcards");
         button.addEventListener("click", async () => {
-            const updatedCard = await ColorCardsService.checkColor(card.id);
-            if(updatedCard){
-                this.update(updatedCard);
-            }
+            
         });
     }
 
