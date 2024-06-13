@@ -9,7 +9,7 @@ public class PlayerDAO {
     // create a new player
     public void createPlayer(String name, String role, int gameID) {
         try {
-            PolyNameDatabase db = new PolyNameDatabase("localhost", 3307, "poly_names", "root", "");
+            PolyNameDatabase db = new PolyNameDatabase("localhost", 3306, "poly_names", "root", "");
             String query = "INSERT INTO player (name, role, Game_ID) VALUES (?, ?, ?)";
             PreparedStatement statement = db.prepareStatement(query);
             statement.setString(1, name);
@@ -26,7 +26,7 @@ public class PlayerDAO {
     // find a player by name
     public int findPlayerByName(String name) {
         try {
-            PolyNameDatabase db = new PolyNameDatabase("localhost", 3307, "poly_names", "root", "");
+            PolyNameDatabase db = new PolyNameDatabase("localhost", 3306, "poly_names", "root", "");
             String query = "SELECT Player_ID FROM player WHERE name = ?";
             PreparedStatement statement = db.prepareStatement(query);
             statement.setString(1, name);
@@ -45,7 +45,7 @@ public class PlayerDAO {
     // delete a player by name
     public void deletePlayerByName(String name) {
         try {
-            PolyNameDatabase db = new PolyNameDatabase("localhost", 3307, "poly_names", "root", "");
+            PolyNameDatabase db = new PolyNameDatabase("localhost", 3306, "poly_names", "root", "");
             String query = "DELETE FROM player WHERE name = ?";
             PreparedStatement statement = db.prepareStatement(query);
             statement.setString(1, name);

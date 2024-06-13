@@ -21,8 +21,9 @@ public class App {
             // wordsDAO.selectBlackCards(id);
 
             // wordsDAO.deleteCards(gameDAO.findGameByCode("5468"));
-            // gameDAO.deleteGameByCode("5468");
+            // gameDAO.deleteGameByCode("1234");
 
+            
             webserver.getRouter().get("/words", (WebServerContext context) -> {
                 WordsController.findAll(context);
             });
@@ -59,6 +60,11 @@ public class App {
                     GameController.createGame(context);
                     CardsController.createCards(context);
                 }
+            });
+
+            // create a route to delete the game with the code as a parameter
+            webserver.getRouter().delete("/game/delete/:gameCode", (WebServerContext context) -> {
+                GameController.deleteGame(context);
             });
 
         } catch (Exception e) {

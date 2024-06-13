@@ -6,8 +6,7 @@ import { GameService } from "./services/game-service.js";
 
 async function run() {
   console.log("all words");
-  const wordsService = new WordsService();
-  // Correct usage if keeping findAll as a static method
+
   WordsService.findAll().then((data) => {
     console.log(data);
   });
@@ -19,11 +18,10 @@ async function run() {
   await cardsView.displayCards();
 
   console.log("all colored cards");
-  const colorCardsService = new ColorCardsService();
-  // Correct usage if keeping findAll as a static method
-  ColorCardsService.findAll(9994).then((data) => {
+  ColorCardsService.findAll(5958).then((data) => {
     console.log(data);
   });
+
 }
 
 window.addEventListener("load", run);

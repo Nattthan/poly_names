@@ -18,7 +18,7 @@ public class WordsDAO {
     public ArrayList<Word> findAll(){
         ArrayList<Word> content = new ArrayList<>();
         try {
-            PolyNameDatabase db = new PolyNameDatabase("localhost", 3307, "poly_names", "root", "");
+            PolyNameDatabase db = new PolyNameDatabase("localhost", 3306, "poly_names", "root", "");
             String query = "SELECT * FROM word ORDER BY content ASC";
             PreparedStatement statement = db.prepareStatement(query);
             System.out.println("Executing query: " + query);

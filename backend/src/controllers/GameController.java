@@ -70,7 +70,9 @@ public class GameController {
                 return;
             }
 
+            CardsDAO cardsDAO = new CardsDAO();
             GameDAO gameDAO = new GameDAO();
+            cardsDAO.deleteCards(gameDAO.findGameByCode(gameCode));
             gameDAO.deleteGameByCode(gameCode);
             webServerContext.getResponse().ok("Game deleted.");
         } catch (Exception e) {
