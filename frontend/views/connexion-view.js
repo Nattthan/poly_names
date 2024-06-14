@@ -8,7 +8,7 @@ export class ConnexionView {
     async displayConnexionPage(){
         this.parent.innerHTML += '<button class= "createButton">Créer</button>';
         this.parent.innerHTML += '<button class= "joinButton">Rejoindre</button><br>';
-        this.parent.innerHTML += '<input type="text" class="gameid">';
+        this.parent.innerHTML += '<input type="text" placeholder="enter your game code here..." class="gameid">';
         const createButton = this.parent.querySelector(".createButton");
         const joinButton = this.parent.querySelector(".joinButton");
         const gameid = this.parent.querySelector(".gameid");
