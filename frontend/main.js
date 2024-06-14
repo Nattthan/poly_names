@@ -6,12 +6,15 @@ import { GameService } from "./services/game-service.js";
 import { ConnexionView } from "./views/connexion-view.js";
 import { ColorCardsView } from "./views/colorCards-view.js";
 import { ChoiceView } from "./views/choice-view.js";
+import { HomeView } from "./views/home-view.js";
 
 async function run() {
   console.log("all words");
   WordsService.findAll().then((data) => {
     console.log(data);
   });
+
+  gameplay(9994);
 
   let state = localStorage.getItem("state");
 
@@ -22,22 +25,31 @@ async function run() {
 
   else if (state === "2"){
     const choiceView = new ChoiceView();
-    choiceView.displayChoicePage();
+    await choiceView.displayChoicePage();
   }
 
   else if (state === "3"){
     console.log("all cards");
     const cardsView = new CardsView();
     await cardsView.displayCards();
+    const homeView = new HomeView();
+    homeView.displayHomeView();
   }
 
   else if (state === "4"){
     console.log("all colored cards");
     const colorCardsView = new ColorCardsView();
     await colorCardsView.displayColorCards();
+    const homeView = new HomeView();
+    homeView.displayHomeView();
   }
 }
 
+function gameplay(gameId){
+  GameService.findGame(gameId).then((data) => {
+    console.log(data);
+  });
+}
 
 window.addEventListener("load",
   run

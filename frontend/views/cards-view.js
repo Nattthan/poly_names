@@ -22,7 +22,4 @@ export class CardsView {
             
         });
     }
-
-   update(data) {
-   }
 }

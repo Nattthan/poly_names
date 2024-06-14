@@ -79,5 +79,68 @@ public class GameController {
             webServerContext.getResponse().serverError("Failed to delete game.");
         }
     }
+    public static void getTurn(WebServerContext webServerContext){
+        try {
+            String gameCode = webServerContext.getRequest().getParam("gameCode");
+            if(gameCode == null) {
+                webServerContext.getResponse().notFound("Missing game code.");
+                return;
+            }
+
+            GameDAO gameDAO = new GameDAO();
+            gameDAO.getTurn(gameCode);
+            webServerContext.getResponse().ok("Turn found.");
+        } catch (Exception e) {
+            webServerContext.getResponse().serverError("Failed to delete game.");
+        }
+    }
+
+    public static void setScore(WebServerContext webServerContext){
+        try {
+            String gameCode = webServerContext.getRequest().getParam("gameCode");
+            String score = webServerContext.getRequest().getParam("score");
+            if(gameCode == null) {
+                webServerContext.getResponse().notFound("Missing game code.");
+                return;
+            }
+
+            GameDAO gameDAO = new GameDAO();
+            gameDAO.updateScore(gameCode, score);
+            webServerContext.getResponse().ok("Score updated.");
+        } catch (Exception e) {
+            webServerContext.getResponse().serverError("Failed to delete game.");
+        }
+    }
+    public static void getScore(WebServerContext webServerContext){
+        try {
+            String gameCode = webServerContext.getRequest().getParam("gameCode");
+            if(gameCode == null) {
+                webServerContext.getResponse().notFound("Missing game code.");
+                return;
+            }
+
+            GameDAO gameDAO = new GameDAO();
+            gameDAO.getScore(gameCode);
+            webServerContext.getResponse().ok("Score found.");
+        } catch (Exception e) {
+            webServerContext.getResponse().serverError("Failed to delete game.");
+        }
+    }
+    public static void setTurn(WebServerContext webServerContext){
+        try {
+            String gameCode = webServerContext.getRequest().getParam("gameCode");
+            String turn = webServerContext.getRequest().getParam("turn");
+            if(gameCode == null) {
+                webServerContext.getResponse().notFound("Missing game code.");
+                return;
+            }
+
+            GameDAO gameDAO = new GameDAO();
+            gameDAO.manageTurns(gameCode, turn);
+            webServerContext.getResponse().ok("Turn Updated.");
+        } catch (Exception e) {
+            webServerContext.getResponse().serverError("Failed to delete game.");
+        }
+    }
 
 }
