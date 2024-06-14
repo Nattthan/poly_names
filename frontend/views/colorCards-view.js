@@ -6,7 +6,7 @@ export class ColorCardsView {
     }
     
     async displayColorCards() {
-        const cards = await ColorCardsService.findAll(9994);
+        const cards = await ColorCardsService.findAll(localStorage.getItem('gameId'));
         for (const card of cards){
             this.displayColorCard(card);
         }

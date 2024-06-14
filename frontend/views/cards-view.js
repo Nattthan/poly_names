@@ -6,7 +6,7 @@ export class CardsView {
     }
     
     async displayCards() {
-        const cards = await CardsService.findAll(9994);
+        const cards = await CardsService.findAll(localStorage.getItem('gameId'));
         for (const card of cards){
             this.displayCard(card);
         }
