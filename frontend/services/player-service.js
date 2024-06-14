@@ -19,7 +19,7 @@ export class PlayerService {
         const playerId = PlayerService.getOrCreatePlayerId();
 
         const response = await fetch(`http://localhost:8080/game/${gameCode}/${team}/player/${playerId}`, {
-            method: 'POST',
+            method: 'POST'
         });
         if(response.status === 200){
             return true;
