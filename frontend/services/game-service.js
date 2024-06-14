@@ -35,7 +35,7 @@ export class GameService {
     } 
 
     static async setTurn(gameCode, turn){
-        const response = await fetch(`http://localhost:8080/game/${gameCode}/setTurn/${turn}`);
+        const response = await fetch(`http://localhost:8080/game/${gameCode}/setTurn/${turn}`, {method : "POST"});
         if(response.status === 200){
             const data = await response.json();
             console.log("Done this");
@@ -46,7 +46,7 @@ export class GameService {
     }
 
     static async setScore(gameCode, score){
-        const response = await fetch(`http://localhost:8080/game/${gameCode}/setScore/${score}`);
+        const response = await fetch(`http://localhost:8080/game/${gameCode}/setScore/${score}`, {method : "POST"});
         
         if(response.status === 200){
             const data = await response.json();
