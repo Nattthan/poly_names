@@ -62,6 +62,46 @@ public class App {
                 }
             });
 
+            webserver.getRouter().post("/game/:gameCode/setTurn", (WebServerContext context) -> {
+                if (GameController.gameExists(context)) {
+                    GameController.setTurn(context);
+                }   
+                else {
+                    GameController.createGame(context);
+                    GameController.setTurn(context);
+                }
+            });
+
+            webserver.getRouter().post("/game/:gameCode/setScore", (WebServerContext context) -> {
+                if (GameController.gameExists(context)) {
+                    GameController.setScore(context);
+                }   
+                else {
+                    GameController.createGame(context);
+                    GameController.setScore(context);
+                }
+            });
+
+            webserver.getRouter().get("/game/:gameCode/getTurn", (WebServerContext context) -> {
+                if (GameController.gameExists(context)) {
+                    GameController.getTurn(context);
+                }   
+                else {
+                    GameController.createGame(context);
+                    GameController.getTurn(context);
+                }
+            });
+
+            webserver.getRouter().get("/game/:gameCode/getScore", (WebServerContext context) -> {
+                if (GameController.gameExists(context)) {
+                    GameController.getScore(context);
+                }   
+                else {
+                    GameController.createGame(context);
+                    GameController.getScore(context);
+                }
+            });
+
             // create a route to delete the game with the code as a parameter
             webserver.getRouter().delete("/game/delete/:gameCode", (WebServerContext context) -> {
                 GameController.deleteGame(context);
