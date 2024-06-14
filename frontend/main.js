@@ -34,6 +34,8 @@ async function run() {
   else if (state === "4"){
     console.log("all colored cards");
     const colorCardsView = new ColorCardsView();
+    const multi = document.querySelector(".multiButton");
+    multi.innerHTML = ""
     await colorCardsView.displayColorCards();
     colorCardsView.displayGuess();
   }
