@@ -9,10 +9,6 @@ import { ChoiceView } from "./views/choice-view.js";
 import { HomeView } from "./views/home-view.js";
 
 async function run() {
-  console.log("all words");
-  WordsService.findAll().then((data) => {
-    console.log(data);
-  });
 
   let state = localStorage.getItem("state");
 

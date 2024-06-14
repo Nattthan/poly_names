@@ -20,7 +20,6 @@ export class ColorCardsView {
     displayGuess(){
         document.body.innerHTML += '<div class = "clueDiv"><input type="text" class="clueGuess" placeholder="Indice"></div>';
         document.body.innerHTML += '<div class = "numberDiv"><input type="text" class="numberOfGuesses" placeholder="Nombre de mots en rapport"></div>';
-        document.body.innerHTML += '<button class= "homeBtn">Home</button>';
         const numberOfGuesses = document.body.querySelector(".numberOfGuesses");
         const clueGuess = document.body.querySelector(".clueGuess");
         const guessDiv = document.createElement("div");
@@ -29,18 +28,15 @@ export class ColorCardsView {
         document.body.appendChild(guessDiv);
         const guessButton = guessDiv.querySelector(".inputGuess");
         guessButton.addEventListener("click", async () => {
-            let clueGuessValue = clueGuess.value;
-            let numberOfGuessesValue = numberOfGuesses.value;
-            localStorage.setItem("clueGuess", clueGuessValue);
-            localStorage.setItem("numberOfGuesses", numberOfGuessesValue);
-        });
-        const homeBtn = document.body.querySelector(".homeBtn");
-        homeBtn.addEventListener("click", async () => {
-            localStorage.setItem("state", "1");
-            location.reload();
-            GameService.setTurn(1918, "input");
-            GameService.setScore(1918, "8");
-            console.log(GameService.getTurn(1918));
+            /*const turn = await GameService.getTurn(localStorage.getItem("gameId")).then();
+            console.log(turn)
+            if (turn === "input"){*/
+                let clueGuessValue = clueGuess.value;
+                let numberOfGuessesValue = numberOfGuesses.value;
+                localStorage.setItem("clueGuess", clueGuessValue);
+                localStorage.setItem("numberOfGuesses", numberOfGuessesValue);
+                GameService.setTurn(localStorage.getItem("gameId"), "guess");
+            //}
         });
     }
 
@@ -53,19 +49,16 @@ export class ColorCardsView {
         for( let i = 0; i < 8; i++){
             if (bluecards[i].contents == card.contents){
                 button.classList.add("blue");
-                
             }
         }
         for( let i = 0; i < 15; i++){
             if (greycards[i].contents == card.contents){
                 button.classList.add("grey");
-                
             }
         }
         for( let i = 0; i < 2; i++){
             if (blackcards[i].contents == card.contents){
                 button.classList.add("black");
-                
             }
         }
     }

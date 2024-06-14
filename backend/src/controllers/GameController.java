@@ -89,9 +89,42 @@ public class GameController {
 
             GameDAO gameDAO = new GameDAO();
             gameDAO.getTurn(gameCode);
-            webServerContext.getResponse().ok("Turn found.");
+            webServerContext.getResponse().json(gameDAO.getTurn(gameCode));
         } catch (Exception e) {
             webServerContext.getResponse().serverError("Failed to get turn.");
+        }
+    }
+
+    public static void getScore(WebServerContext webServerContext){
+        try {
+            String gameCode = webServerContext.getRequest().getParam("gameCode");
+            if(gameCode == null) {
+                webServerContext.getResponse().notFound("Missing game code.");
+                return;
+            }
+
+            GameDAO gameDAO = new GameDAO();
+            gameDAO.getScore(gameCode);
+            webServerContext.getResponse().json(gameDAO.getScore(gameCode));
+        } catch (Exception e) {
+            webServerContext.getResponse().serverError("Failed to get Score.");
+        }
+    }
+
+    public static void setTurn(WebServerContext webServerContext){
+        try {
+            String gameCode = webServerContext.getRequest().getParam("gameCode");
+            String turn = webServerContext.getRequest().getParam("turn");
+            if(gameCode == null) {
+                webServerContext.getResponse().notFound("Missing game code.");
+                return;
+            }
+
+            GameDAO gameDAO = new GameDAO();
+            gameDAO.manageTurns(gameCode, turn);
+            webServerContext.getResponse().ok("");
+        } catch (Exception e) {
+            webServerContext.getResponse().serverError("Failed set Turn.");
         }
     }
 
@@ -106,41 +139,12 @@ public class GameController {
 
             GameDAO gameDAO = new GameDAO();
             gameDAO.updateScore(gameCode, score);
-            webServerContext.getResponse().ok("Score updated.");
+            webServerContext.getResponse().ok("");
         } catch (Exception e) {
             webServerContext.getResponse().serverError("Failed to set score.");
         }
     }
-    public static void getScore(WebServerContext webServerContext){
-        try {
-            String gameCode = webServerContext.getRequest().getParam("gameCode");
-            if(gameCode == null) {
-                webServerContext.getResponse().notFound("Missing game code.");
-                return;
-            }
-
-            GameDAO gameDAO = new GameDAO();
-            gameDAO.getScore(gameCode);
-            webServerContext.getResponse().ok("Score found.");
-        } catch (Exception e) {
-            webServerContext.getResponse().serverError("Failed to get Score.");
-        }
-    }
-    public static void setTurn(WebServerContext webServerContext){
-        try {
-            String gameCode = webServerContext.getRequest().getParam("gameCode");
-            String turn = webServerContext.getRequest().getParam("turn");
-            if(gameCode == null) {
-                webServerContext.getResponse().notFound("Missing game code.");
-                return;
-            }
-
-            GameDAO gameDAO = new GameDAO();
-            gameDAO.manageTurns(gameCode, turn);
-            webServerContext.getResponse().ok("Turn Updated.");
-        } catch (Exception e) {
-            webServerContext.getResponse().serverError("Failed set Turn.");
-        }
-    }
+    
+    
 
 }

@@ -73,7 +73,7 @@ public class App {
                 }
             });
 
-            webserver.getRouter().post("/game/:gameCode/setScore/:setScore", (WebServerContext context) -> {
+            webserver.getRouter().post("/game/:gameCode/setScore/:score", (WebServerContext context) -> {
                 if (GameController.gameExists(context)) {
                     GameController.setScore(context);
                 }   
