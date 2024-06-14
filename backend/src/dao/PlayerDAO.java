@@ -9,7 +9,7 @@ public class PlayerDAO {
     // create a new player
     public void createPlayer(String Player_UUID, String role, int gameID) {
         try {
-            PolyNameDatabase db = new PolyNameDatabase("localhost", 3306, "poly_names", "root", "");
+            PolyNameDatabase db = new PolyNameDatabase("localhost", 3307, "poly_names", "root", "");
             String query = "INSERT INTO player (Player_UUID, role, Game_ID, Player_ID) VALUES (?, ?, ?, ?)";
             PreparedStatement statement = db.prepareStatement(query);
             statement.setString(1, Player_UUID);
@@ -33,7 +33,7 @@ public class PlayerDAO {
     // find a player by Player_UUID
     public int findPlayerByName(String Player_UUID, int gameID) {
         try {
-            PolyNameDatabase db = new PolyNameDatabase("localhost", 3306, "poly_names", "root", "");
+            PolyNameDatabase db = new PolyNameDatabase("localhost", 3307, "poly_names", "root", "");
             String query = "SELECT Player_ID FROM player WHERE Player_UUID = ? AND Game_ID = ?";
             PreparedStatement statement = db.prepareStatement(query);
             statement.setString(1, Player_UUID);
@@ -58,7 +58,7 @@ public class PlayerDAO {
     // delete a player by Player_UUID
     public void deletePlayerByName(String Player_UUID) {
         try {
-            PolyNameDatabase db = new PolyNameDatabase("localhost", 3306, "poly_names", "root", "");
+            PolyNameDatabase db = new PolyNameDatabase("localhost", 3307, "poly_names", "root", "");
             String query = "DELETE FROM player WHERE Player_UUID = ?";
             PreparedStatement statement = db.prepareStatement(query);
             statement.setString(1, Player_UUID);
@@ -73,7 +73,7 @@ public class PlayerDAO {
     // check if a player exists
     public boolean playerExists(String role, int gameID) {
         try {
-            PolyNameDatabase db = new PolyNameDatabase("localhost", 3306, "poly_names", "root", "");
+            PolyNameDatabase db = new PolyNameDatabase("localhost", 3307, "poly_names", "root", "");
             String query = "SELECT * FROM player WHERE role = ? AND Game_ID = ?";
             PreparedStatement statement = db.prepareStatement(query);
             statement.setString(1, role);
@@ -97,7 +97,7 @@ public class PlayerDAO {
     // check if the player as the same UUID
     public boolean playerHasSameUUID(String Player_UUID, int gameID, String role) {
         try {
-            PolyNameDatabase db = new PolyNameDatabase("localhost", 3306, "poly_names", "root", "");
+            PolyNameDatabase db = new PolyNameDatabase("localhost", 3307, "poly_names", "root", "");
             String query = "SELECT * FROM player WHERE Player_UUID = ? AND Game_ID = ? AND role = ?";
             PreparedStatement statement = db.prepareStatement(query);
             statement.setString(1, Player_UUID);

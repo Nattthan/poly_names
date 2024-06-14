@@ -75,6 +75,7 @@ public class GameDAO {
 
     // get the score of a game
     public int getScore(String code){
+        int score = 0;
         try {
             PolyNameDatabase db = new PolyNameDatabase("localhost", 3307, "poly_names", "root", "");
             String query = "SELECT score FROM game WHERE code = ?";
@@ -82,15 +83,15 @@ public class GameDAO {
             statement.setString(1, code);
             System.out.println("Executing query: " + query);
             ResultSet resultSet = statement.executeQuery();
-
-            int score = resultSet.getInt("score");
-
-            return score;
-            
+            if(resultSet.next()){
+                score = resultSet.getInt("score"); 
+                return score;
+            }
         } catch (Exception e) {
             System.out.println("Failed to get score.");
             return 0;
         }
+        return score;
     }
 
     // manage turns
@@ -111,6 +112,7 @@ public class GameDAO {
 
     // get the turn of a game
     public String getTurn(String code){
+        String turn = "default";
         try {
             PolyNameDatabase db = new PolyNameDatabase("localhost", 3307, "poly_names", "root", "");
             String query = "SELECT turn FROM game WHERE code = ?";
@@ -118,15 +120,16 @@ public class GameDAO {
             statement.setString(1, code);
             System.out.println("Executing query: " + query);
             ResultSet resultSet = statement.executeQuery();
-            
-            String turn = resultSet.getString("turn");
-
-            return turn;
+            if(resultSet.next()){
+                turn = resultSet.getString("turn");
+                return turn;
+            }
 
         } catch (Exception e) {
             System.out.println("Failed to get turn.");
             return "";
         }
+        return turn;
     }
 
     // check if the game exists
@@ -150,6 +153,5 @@ public class GameDAO {
             return false;
         }
     }
-    
     
 }

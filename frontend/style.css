@@ -198,14 +198,14 @@ span {
   width: 353px;
   height: 343px;
   flex-shrink: 0;
-  background: url("/Images/men.png") transparent 100% / cover no-repeat;
+  background: url("Images/men.png") transparent 100% / cover no-repeat;
 }
 
 .women {
   width: 303px;
   height: 342px;
   flex-shrink: 0;
-  background: url("/Images/women.png") transparent 100% / cover no-repeat;
+  background: url("Images/women.png") transparent 100% / cover no-repeat;
 }
 
 .created-by {
