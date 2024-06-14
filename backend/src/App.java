@@ -1,6 +1,7 @@
 import controllers.GameController;
 import controllers.WordsController;
 import controllers.CardsController;
+import controllers.PlayerController;
 import dao.GameDAO;
 // import dao.WordsDAO;
 import webserver.WebServer;
@@ -65,6 +66,16 @@ public class App {
             // create a route to delete the game with the code as a parameter
             webserver.getRouter().delete("/game/delete/:gameCode", (WebServerContext context) -> {
                 GameController.deleteGame(context);
+            });
+
+            // create a route to send the player UUID, role and game ID then create the player
+            webserver.getRouter().post("/game/:gameCode/:team/player/:Player_UUID", (WebServerContext context) -> {
+                if(PlayerController.playerExists(context)){
+                    PlayerController.isSamePlayerUUID(context);
+                }
+                else if (PlayerController.playerExists(context) == false){
+                    PlayerController.createPlayer(context);
+                }
             });
 
         } catch (Exception e) {

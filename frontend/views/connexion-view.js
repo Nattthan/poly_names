@@ -15,12 +15,14 @@ export class ConnexionView {
         createButton.addEventListener("click", async () => {
             localStorage.setItem("state", "2");
             let gameId = gameid.value;
+            localStorage.setItem("gameId", gameId);
             CardsService.findAll(gameId);
             location.reload();
         });
         joinButton.addEventListener("click", async () => {
             localStorage.setItem("state", "2");
             let gameId = gameid.value;
+            localStorage.setItem("gameId", gameId);
             GameService.findGame(gameId);
             location.reload();
         });
