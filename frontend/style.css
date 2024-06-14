@@ -1,19 +1,215 @@
+html,
 body {
-    background-image: url('Images/background.png');
-    background-size: cover;
-    background-repeat: no-repeat;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  width: 100vw;
+  min-height: 100vh;
+  box-sizing: border-box;
 }
 
-div{
-    display: flex;
-    flex-direction: row;
-    text-align: center;
+body {
+  background: url("Images/background.png") lightgray 50% / cover no-repeat;
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0px;
 }
 
-button{
-    background-color: brown;
+.title {
+  width: 702.719px;
+  height: 172.449px;
+  flex-shrink: 0;
+  margin-top: 25px;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  display: flex;
 }
 
-button:active{
-    background-color: beige;
+span {
+  color: #d9d9d9;
+  font-family: "Roboto", sans-serif;
+  font-size: 96px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: normal;
+  letter-spacing: 0.1em;
+  text-align: center;
+  margin-top: 30px;
+}
+
+.py {
+  padding-top: 50px;
+  transform: rotate(-18.407deg);
+}
+.oy {
+  padding-top: 26px;
+  transform: rotate(-13.851deg);
+}
+.ly {
+  padding-top: 10px;
+  transform: rotate(-9.54deg);
+}
+.yy {
+  padding-top: 0px;
+  transform: rotate(-5.351deg);
+}
+.ny {
+  margin-top: 25px;
+  transform: rotate(-0.673deg);
+}
+.ay {
+  margin-top: 28px;
+  transform: rotate(4.097deg);
+}
+.my {
+  padding-top: 8px;
+  transform: rotate(9.418deg);
+}
+.ey {
+  padding-top: 24px;
+  transform: rotate(14.279deg);
+}
+.sy {
+  padding-top: 45px;
+  padding-left: 4px;
+  transform: rotate(18.377deg);
+}
+
+.frame {
+  display: flex;
+  width: 1317px;
+  height: 641px;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  padding: 36px 51px 35px 51px;
+
+  border-radius: 45px;
+  border: 8px solid #f3c6d4;
+  background: #f8e0ca;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.multiButton {
+  display: inline-flex;
+  position: absolute;
+  bottom: 0;
+  height: 60px;
+  width: 250px;
+  padding: 33px 61px 32px 82px;
+  justify-content: flex-end;
+  align-items: center;
+  flex-shrink: 0;
+
+  border-radius: 100px;
+  border: 8px solid var(--Stroke, #f3c6d4);
+  background: #fff;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+
+  margin-bottom: 65px;
+}
+
+.cards {
+  width: 1215px;
+  height: 600px;
+  flex-shrink: 0;
+  display: flex;
+  padding: 0 0 0 0;
+  margin: 0 0 0 0;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+}
+
+.coloredcards {
+  display: flex;
+  padding: 31px 71px 32px 72px;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 24px;
+  border: none;
+  background: #fff;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  margin: 0 25px 15px 0;
+
+  color: #504a46;
+
+  font-family: "Roboto";
+  font-size: 25px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: normal;
+  text-transform: uppercase;
+
+  position: relative;
+  width: 223px;
+  height: 102px;
+}
+
+.characters {
+  display: flex;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: auto;
+  height: 343px;
+  flex-shrink: 0;
+  display: flex;
+  justify-content: space-between;
+  pointer-events: none;
+}
+
+.men {
+  width: 353px;
+  height: 343px;
+  flex-shrink: 0;
+  background: url("/Images/men.png") transparent 100% / cover no-repeat;
+}
+
+.women {
+  width: 303px;
+  height: 342px;
+  flex-shrink: 0;
+  background: url("/Images/women.png") transparent 100% / cover no-repeat;
+}
+
+.created-by {
+  font-family: "Inter-ExtraBold", Helvetica;
+  font-weight: 800;
+  color: #ffffff5e;
+  font-size: 20px;
+  letter-spacing: 0;
+  line-height: normal;
+  height: 50px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  bottom: 0;
+}
+
+button:active {
+  background-color: beige;
+}
+
+.blue{
+    background-color: blue;
+}
+
+.grey{
+    background-color: gray;
+}
+
+.black{
+    background-color: black;
 }
