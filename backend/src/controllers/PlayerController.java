@@ -5,7 +5,6 @@ import webserver.WebServerContext;
 
 public class PlayerController {
     public static void createPlayer(WebServerContext webServerContext){
-        System.out.println("Creating player...");
         try {
             String Player_UUID = webServerContext.getRequest().getParam("Player_UUID");
             String role = webServerContext.getRequest().getParam("team");
@@ -52,13 +51,11 @@ public class PlayerController {
             GameDAO gameDAO = new GameDAO();
             int gameID = gameDAO.findGameByCode(gameCode);
             if(role == null) {
-                webServerContext.getResponse().notFound("Missing player UUID.");
                 return false;
             }
-    
+
             PlayerDAO playerDAO = new PlayerDAO();
             if(playerDAO.playerExists(role, gameID) == false){
-                webServerContext.getResponse().notFound("Player not found.");
                 return false;
             }
             return true;
@@ -70,6 +67,7 @@ public class PlayerController {
 
     public static boolean isSamePlayerUUID(WebServerContext webServerContext){
         try {
+            System.out.println("Checking if player UUID is the same...");
             String Player_UUID = webServerContext.getRequest().getParam("Player_UUID");
             String role = webServerContext.getRequest().getParam("team");
             String gameCode = webServerContext.getRequest().getParam("gameCode");
@@ -79,7 +77,7 @@ public class PlayerController {
                 webServerContext.getResponse().notFound("Missing player UUID.");
                 return false;
             }
-    
+
             PlayerDAO playerDAO = new PlayerDAO();
             if(playerDAO.playerHasSameUUID(Player_UUID, gameID, role)){
                 webServerContext.getResponse().json(playerDAO.findPlayerByName(Player_UUID, gameID));
