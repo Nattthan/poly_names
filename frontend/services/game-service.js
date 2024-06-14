@@ -37,12 +37,11 @@ export class GameService {
     static async setTurn(gameCode, turn){
         const response = await fetch(`http://localhost:8080/game/${gameCode}/setTurn/${turn}`, {method : "POST"});
         if(response.status === 200){
-            const data = await response.json();
-            console.log("Done this");
-            return data;
+            return true;
         }
-    
-        return this.cards;
+        else{
+            return false;
+        }
     }
 
     static async setScore(gameCode, score){
@@ -55,6 +54,39 @@ export class GameService {
     
         return this.cards;
     }
+
+    static async getBlueCards(gameCode){
+        const response = await fetch(`http://localhost:8080/game/${gameCode}/getBlueCards`);
+        
+        if(response.status === 200){
+            const data = await response.json();
+            return data;
+        }
+    
+        return this.cards;
+    } 
+
+    static async getGreyCards(gameCode){
+        const response = await fetch(`http://localhost:8080/game/${gameCode}/getGreyCards`);
+        
+        if(response.status === 200){
+            const data = await response.json();
+            return data;
+        }
+    
+        return this.cards;
+    } 
+
+    static async getBlackCards(gameCode){
+        const response = await fetch(`http://localhost:8080/game/${gameCode}/getBlackCards`);
+        
+        if(response.status === 200){
+            const data = await response.json();
+            return data;
+        }
+    
+        return this.cards;
+    } 
 
     static async delete(gameCode) {
         const response = await fetch(

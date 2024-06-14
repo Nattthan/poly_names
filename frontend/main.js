@@ -14,13 +14,12 @@ async function run() {
     console.log(data);
   });
 
-  gameplay(9994);
-
   let state = localStorage.getItem("state");
 
   if (state === "1"){
     const connexionView = new ConnexionView();
     connexionView.displayConnexionPage();
+
   }
 
   else if (state === "2"){
@@ -32,25 +31,17 @@ async function run() {
     console.log("all cards");
     const cardsView = new CardsView();
     await cardsView.displayCards();
-    const homeView = new HomeView();
-    homeView.displayHomeView();
+    
+    
   }
 
   else if (state === "4"){
     console.log("all colored cards");
     const colorCardsView = new ColorCardsView();
     await colorCardsView.displayColorCards();
-    const homeView = new HomeView();
-    homeView.displayHomeView();
+    colorCardsView.displayGuess();
   }
 }
 
-function gameplay(gameId){
-  GameService.findGame(gameId).then((data) => {
-    console.log(data);
-  });
-}
 
-window.addEventListener("load",
-  run
-  );
+window.addEventListener("load",run);

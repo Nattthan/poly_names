@@ -5,13 +5,15 @@ export class HomeView {
         this.parent = document.querySelector(".cards");
     }
 
-    async displayHomeView() {
-        this.parent.innerHTML += '<br><button class= "homeBtn">Home</button>';
-        const homeBtn = this.parent.querySelector(".homeBtn");
+    displayHomeView() {
+        document.body.innerHTML += '<br><button class= "homeBtn">Home</button>';
+        const homeBtn = document.body.querySelector(".homeBtn");
         homeBtn.addEventListener("click", async () => {
             localStorage.setItem("state", "1");
             location.reload();
-            GameService.setTurn(9994, "input")
+            GameService.setTurn(1918, "input");
+            GameService.setScore(1918, "8");
+            console.log(GameService.getTurn(1918));
         });
     }
 }
