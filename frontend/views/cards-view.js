@@ -28,19 +28,19 @@ export class CardsView {
             for( let i = 0; i < 8; i++){
                 if (bluecards[i].contents == card.contents){
                     button.classList.add("blue");
-                    button.classList.remove("normalcards");
+                   
                 }
             }
             for( let i = 0; i < 15; i++){
                 if (greycards[i].contents == card.contents){
                     button.classList.add("grey");
-                    button.classList.remove("normalcards");
+                    
                 }
             }
             for( let i = 0; i < 2; i++){
                 if (blackcards[i].contents == card.contents){
                     button.classList.add("black");
-                    button.classList.remove("normalcards");
+                    
                 }
             }
         });

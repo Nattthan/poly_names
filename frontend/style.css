@@ -154,6 +154,32 @@ span {
   height: 102px;
 }
 
+.normalcards {
+    display: flex;
+    padding: 31px 71px 32px 72px;
+    justify-content: center;
+    align-items: center;
+  
+    border-radius: 24px;
+    border: none;
+    background: #fff;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    margin: 0 25px 15px 0;
+  
+    color: #504a46;
+  
+    font-family: "Roboto";
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+    text-transform: uppercase;
+  
+    position: relative;
+    width: 223px;
+    height: 102px;
+  }
+
 .characters {
   display: flex;
   position: absolute;
@@ -196,18 +222,20 @@ span {
   justify-content: center;
   position: absolute;
   bottom: 0;
+  pointer-events: none;
 }
 
 button:active {
   background-color: beige;
+  
 }
 
 .blue{
-    background-color: blue;
+    background-color: #90CAFF;
 }
 
 .grey{
-    background-color: gray;
+    background-color: #ABABAB;
 }
 
 .black{
