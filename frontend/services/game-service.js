@@ -13,6 +13,49 @@ export class GameService {
     return this.cards;
     }
 
+    static async getTurn(gameCode){
+        const response = await fetch(`http://localhost:8080/game/${gameCode}/getTurn`);
+        
+        if(response.status === 200){
+            const data = await response.json();
+            return data;
+        }
+    
+        return this.cards;
+    }
+    static async getScore(gameCode){
+        const response = await fetch(`http://localhost:8080/game/${gameCode}/getScore`);
+        
+        if(response.status === 200){
+            const data = await response.json();
+            return data;
+        }
+    
+        return this.cards;
+    } 
+
+    static async setTurn(gameCode, turn){
+        const response = await fetch(`http://localhost:8080/game/${gameCode}/setTurn/${turn}`);
+        if(response.status === 200){
+            const data = await response.json();
+            console.log("Done this");
+            return data;
+        }
+    
+        return this.cards;
+    }
+
+    static async setScore(gameCode, score){
+        const response = await fetch(`http://localhost:8080/game/${gameCode}/setScore/${score}`);
+        
+        if(response.status === 200){
+            const data = await response.json();
+            return data;
+        }
+    
+        return this.cards;
+    }
+
     static async delete(gameCode) {
         const response = await fetch(
             `http://localhost:8080/game/delete/${gameCode}`,

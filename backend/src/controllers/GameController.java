@@ -91,7 +91,7 @@ public class GameController {
             gameDAO.getTurn(gameCode);
             webServerContext.getResponse().ok("Turn found.");
         } catch (Exception e) {
-            webServerContext.getResponse().serverError("Failed to delete game.");
+            webServerContext.getResponse().serverError("Failed to get turn.");
         }
     }
 
@@ -108,7 +108,7 @@ public class GameController {
             gameDAO.updateScore(gameCode, score);
             webServerContext.getResponse().ok("Score updated.");
         } catch (Exception e) {
-            webServerContext.getResponse().serverError("Failed to delete game.");
+            webServerContext.getResponse().serverError("Failed to set score.");
         }
     }
     public static void getScore(WebServerContext webServerContext){
@@ -123,7 +123,7 @@ public class GameController {
             gameDAO.getScore(gameCode);
             webServerContext.getResponse().ok("Score found.");
         } catch (Exception e) {
-            webServerContext.getResponse().serverError("Failed to delete game.");
+            webServerContext.getResponse().serverError("Failed to get Score.");
         }
     }
     public static void setTurn(WebServerContext webServerContext){
@@ -139,7 +139,7 @@ public class GameController {
             gameDAO.manageTurns(gameCode, turn);
             webServerContext.getResponse().ok("Turn Updated.");
         } catch (Exception e) {
-            webServerContext.getResponse().serverError("Failed to delete game.");
+            webServerContext.getResponse().serverError("Failed set Turn.");
         }
     }
 

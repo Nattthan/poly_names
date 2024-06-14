@@ -1,3 +1,5 @@
+import { GameService } from "../services/game-service.js";
+
 export class HomeView {
     constructor() {
         this.parent = document.querySelector(".cards");
@@ -9,6 +11,7 @@ export class HomeView {
         homeBtn.addEventListener("click", async () => {
             localStorage.setItem("state", "1");
             location.reload();
+            GameService.setTurn(9994, "input")
         });
     }
 }

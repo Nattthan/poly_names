@@ -62,7 +62,7 @@ public class App {
                 }
             });
 
-            webserver.getRouter().post("/game/:gameCode/setTurn", (WebServerContext context) -> {
+            webserver.getRouter().post("/game/:gameCode/setTurn/:setTurn", (WebServerContext context) -> {
                 if (GameController.gameExists(context)) {
                     GameController.setTurn(context);
                 }   
@@ -72,7 +72,7 @@ public class App {
                 }
             });
 
-            webserver.getRouter().post("/game/:gameCode/setScore", (WebServerContext context) -> {
+            webserver.getRouter().post("/game/:gameCode/setScore/:setScore", (WebServerContext context) -> {
                 if (GameController.gameExists(context)) {
                     GameController.setScore(context);
                 }   

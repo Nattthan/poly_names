@@ -10,7 +10,7 @@ public class CardsDAO {
     //select 8 random words from word table to be used as blue cards and put them into the card table
     public void createBlueCards(int game_ID){
         try {
-            PolyNameDatabase db = new PolyNameDatabase("localhost", 3306, "poly_names", "root", "");
+            PolyNameDatabase db = new PolyNameDatabase("localhost", 3307, "poly_names", "root", "");
             String query = "INSERT INTO card (Word_ID, Color_ID, Game_ID, isFound) SELECT Word_ID, ?, ?, FALSE FROM word ORDER BY RAND() LIMIT 8";
             PreparedStatement statement = db.prepareStatement(query);
             statement.setInt(1, 1);
@@ -26,7 +26,7 @@ public class CardsDAO {
     //select 15 random words from word table to be used as grey cards and put them into the card table
     public void createGreyCards(int game_ID){
         try {
-            PolyNameDatabase db = new PolyNameDatabase("localhost", 3306, "poly_names", "root", "");
+            PolyNameDatabase db = new PolyNameDatabase("localhost", 3307, "poly_names", "root", "");
             String query = "INSERT INTO card (Word_ID, Color_ID, Game_ID, isFound) SELECT Word_ID, ?, ?, FALSE FROM word ORDER BY RAND() LIMIT 15";
             PreparedStatement statement = db.prepareStatement(query);
             statement.setInt(1, 2);
@@ -41,7 +41,7 @@ public class CardsDAO {
     //select 2 random words from word table to be used as black cards and put them into the card table
     public void createBlackCards(int game_ID){
         try {
-            PolyNameDatabase db = new PolyNameDatabase("localhost", 3306, "poly_names", "root", "");
+            PolyNameDatabase db = new PolyNameDatabase("localhost", 3307, "poly_names", "root", "");
             String query = "INSERT INTO card (Word_ID, Color_ID, Game_ID, isFound) SELECT Word_ID, ?, ?, FALSE FROM word ORDER BY RAND() LIMIT 2";
             PreparedStatement statement = db.prepareStatement(query);
             statement.setInt(1, 3);
@@ -56,7 +56,7 @@ public class CardsDAO {
     // delete all cards depending on the game ID
     public void deleteCards(int game_ID){
         try {
-            PolyNameDatabase db = new PolyNameDatabase("localhost", 3306, "poly_names", "root", "");
+            PolyNameDatabase db = new PolyNameDatabase("localhost", 3307, "poly_names", "root", "");
             String query = "DELETE FROM card WHERE Game_ID = ?";
             PreparedStatement statement = db.prepareStatement(query);
             statement.setInt(1, game_ID);
@@ -71,7 +71,7 @@ public class CardsDAO {
     public ArrayList<Word> drawBlueCards(int game_ID){
         ArrayList<Word> blueCards = new ArrayList<>();
         try {
-            PolyNameDatabase db = new PolyNameDatabase("localhost", 3306, "poly_names", "root", "");
+            PolyNameDatabase db = new PolyNameDatabase("localhost", 3307, "poly_names", "root", "");
             String query = "SELECT * from card INNER JOIN word ON card.Word_ID = word.Word_ID WHERE Color_ID = ? AND Game_ID = ? ORDER BY RAND() LIMIT 8";
             PreparedStatement statement = db.prepareStatement(query);
             statement.setInt(1, 1);
@@ -97,7 +97,7 @@ public class CardsDAO {
     public ArrayList<Word> drawGreyCards(int game_ID){
         ArrayList<Word> greyCards = new ArrayList<>();
         try {
-            PolyNameDatabase db = new PolyNameDatabase("localhost", 3306, "poly_names", "root", "");
+            PolyNameDatabase db = new PolyNameDatabase("localhost", 3307, "poly_names", "root", "");
             String query = "SELECT * from card INNER JOIN word ON card.Word_ID = word.Word_ID WHERE Color_ID = ? AND Game_ID = ? ORDER BY RAND() LIMIT 15";
             PreparedStatement statement = db.prepareStatement(query);
             statement.setInt(1, 2);
@@ -123,7 +123,7 @@ public class CardsDAO {
     public ArrayList<Word> drawBlackCards(int game_ID){
         ArrayList<Word> blackCards = new ArrayList<>();
         try {
-            PolyNameDatabase db = new PolyNameDatabase("localhost", 3306, "poly_names", "root", "");
+            PolyNameDatabase db = new PolyNameDatabase("localhost", 3307, "poly_names", "root", "");
             String query = "SELECT * from card INNER JOIN word ON card.Word_ID = word.Word_ID WHERE Color_ID = ? AND Game_ID = ? ORDER BY RAND() LIMIT 2";
             PreparedStatement statement = db.prepareStatement(query);
             statement.setInt(1, 3);
@@ -149,7 +149,7 @@ public class CardsDAO {
     public ArrayList<Word> drawAllCards(int game_ID){
         ArrayList<Word> allCards = new ArrayList<>();
         try {
-            PolyNameDatabase db = new PolyNameDatabase("localhost", 3306, "poly_names", "root", "");
+            PolyNameDatabase db = new PolyNameDatabase("localhost", 3307, "poly_names", "root", "");
             String query = "SELECT * FROM card INNER JOIN word ON card.Word_ID = word.Word_ID WHERE Game_ID = ? ORDER BY RAND() LIMIT 25";
             PreparedStatement statement = db.prepareStatement(query);
             statement.setInt(1, game_ID);

@@ -9,7 +9,7 @@ public class GameDAO {
     // create a new game
     public void createGame(String code) {
         try {
-            PolyNameDatabase db = new PolyNameDatabase("localhost", 3306, "poly_names", "root", "");
+            PolyNameDatabase db = new PolyNameDatabase("localhost", 3307, "poly_names", "root", "");
             String query = "INSERT INTO game (code, score, turn) VALUES (?, 0, 'guess')";
             PreparedStatement statement = db.prepareStatement(query);
             statement.setString(1, code);
@@ -25,7 +25,7 @@ public class GameDAO {
     public int findGameByCode(String code) {
         int gameID = 0;
         try {
-            PolyNameDatabase db = new PolyNameDatabase("localhost", 3306, "poly_names", "root", "");
+            PolyNameDatabase db = new PolyNameDatabase("localhost", 3307, "poly_names", "root", "");
             String query = "SELECT Game_ID FROM game WHERE code = ?";
             PreparedStatement statement = db.prepareStatement(query);
             statement.setString(1, code);
@@ -45,7 +45,7 @@ public class GameDAO {
     // delete a game by code
     public void deleteGameByCode(String code) {
         try {
-            PolyNameDatabase db = new PolyNameDatabase("localhost", 3306, "poly_names", "root", "");
+            PolyNameDatabase db = new PolyNameDatabase("localhost", 3307, "poly_names", "root", "");
             String query = "DELETE FROM game WHERE code = ?";
             PreparedStatement statement = db.prepareStatement(query);
             statement.setString(1, code);
@@ -58,12 +58,12 @@ public class GameDAO {
     }
 
     // update the score of a game
-    public void updateScore(String code, int score) {
+    public void updateScore(String code, String score) {
         try {
-            PolyNameDatabase db = new PolyNameDatabase("localhost", 3306, "poly_names", "root", "");
+            PolyNameDatabase db = new PolyNameDatabase("localhost", 3307, "poly_names", "root", "");
             String query = "UPDATE game SET score = ? WHERE code = ?";
             PreparedStatement statement = db.prepareStatement(query);
-            statement.setInt(1, score);
+            statement.setString(1, score);
             statement.setString(2, code);
             System.out.println("Executing query: " + query);
             statement.execute();
@@ -76,7 +76,7 @@ public class GameDAO {
     // get the score of a game
     public int getScore(String code){
         try {
-            PolyNameDatabase db = new PolyNameDatabase("localhost", 3306, "poly_names", "root", "");
+            PolyNameDatabase db = new PolyNameDatabase("localhost", 3307, "poly_names", "root", "");
             String query = "SELECT score FROM game WHERE code = ?";
             PreparedStatement statement = db.prepareStatement(query);
             statement.setString(1, code);
@@ -96,7 +96,7 @@ public class GameDAO {
     // manage turns
     public void manageTurns(String code, String turn) {
         try {
-            PolyNameDatabase db = new PolyNameDatabase("localhost", 3306, "poly_names", "root", "");
+            PolyNameDatabase db = new PolyNameDatabase("localhost", 3307, "poly_names", "root", "");
             String query = "UPDATE game SET turn = ? WHERE code = ?";
             PreparedStatement statement = db.prepareStatement(query);
             statement.setString(1, turn);
@@ -112,7 +112,7 @@ public class GameDAO {
     // get the turn of a game
     public String getTurn(String code){
         try {
-            PolyNameDatabase db = new PolyNameDatabase("localhost", 3306, "poly_names", "root", "");
+            PolyNameDatabase db = new PolyNameDatabase("localhost", 3307, "poly_names", "root", "");
             String query = "SELECT turn FROM game WHERE code = ?";
             PreparedStatement statement = db.prepareStatement(query);
             statement.setString(1, code);
@@ -132,7 +132,7 @@ public class GameDAO {
     // check if the game exists
     public boolean gameExists(String code){
         try {
-            PolyNameDatabase db = new PolyNameDatabase("localhost", 3306, "poly_names", "root", "");
+            PolyNameDatabase db = new PolyNameDatabase("localhost", 3307, "poly_names", "root", "");
             String query = "SELECT * FROM game WHERE code = ?";
             PreparedStatement statement = db.prepareStatement(query);
             statement.setString(1, code);
