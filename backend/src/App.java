@@ -2,7 +2,7 @@ import controllers.GameController;
 import controllers.WordsController;
 import controllers.CardsController;
 import controllers.PlayerController;
-import dao.GameDAO;
+// import dao.GameDAO;
 // import dao.WordsDAO;
 import webserver.WebServer;
 import webserver.WebServerContext;
@@ -63,7 +63,7 @@ public class App {
                 }
             });
 
-            webserver.getRouter().post("/game/:gameCode/setTurn/:setTurn", (WebServerContext context) -> {
+            webserver.getRouter().post("/game/:gameCode/setTurn/:turn", (WebServerContext context) -> {
                 if (GameController.gameExists(context)) {
                     GameController.setTurn(context);
                 }   
@@ -100,6 +100,36 @@ public class App {
                 else {
                     GameController.createGame(context);
                     GameController.getScore(context);
+                }
+            });
+
+            webserver.getRouter().get("/game/:gameCode/getBlueCards", (WebServerContext context) -> {
+                if (GameController.gameExists(context)) {
+                    CardsController.findBlueCards(context);
+                }   
+                else {
+                    GameController.createGame(context);
+                    CardsController.findBlueCards(context);                
+                }
+            });
+
+            webserver.getRouter().get("/game/:gameCode/getGreyCards", (WebServerContext context) -> {
+                if (GameController.gameExists(context)) {
+                    CardsController.findGreyCards(context);
+                }   
+                else {
+                    GameController.createGame(context);
+                    CardsController.findGreyCards(context);                
+                }
+            });
+
+            webserver.getRouter().get("/game/:gameCode/getBlackCards", (WebServerContext context) -> {
+                if (GameController.gameExists(context)) {
+                    CardsController.findBlackCards(context);
+                }   
+                else {
+                    GameController.createGame(context);
+                    CardsController.findBlackCards(context);                
                 }
             });
 
